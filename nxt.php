@@ -2,12 +2,23 @@
 //TODO require git.
 
 $output = shell_exec('git tag');
+if($output == null) {
+	echo "[nxt] No tags found. Maybe go for 1.0.0?";
+	exit();
+}
+
 $tags = explode(PHP_EOL, $output);
+
 
 // TODO: improve sort
 sort($tags);
+$tags = array_filter($tags);
 $last = end($tags);
 // possible improvement: https://github.com/z4kn4fein/php-semver 
+echo count($tags);
+if (count($tags) <= 0) {
+	die();
+}
 
 // For debugging: 
 echo "[nxt] List of current tags:" . PHP_EOL;
