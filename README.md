@@ -9,6 +9,22 @@
 [nxt] Next minor is 0.2.0
 [nxt] Next major is 1.0.0
 ````
+
+other examples:
+
+````
+[nxt] Last tag seems like 1.0.0-rc.1
+[nxt] Next release candidate is 1.0.0-rc.2
+[nxt] Next major is 1.0.0
+````
+or with vTAG
+````
+[nxt] Last tag seems like v0.1.9
+[nxt] Next patch is v0.1.10
+[nxt] Next minor is v0.2.0
+[nxt] Next major is v1.0.0
+````
+
 ## Installation
 As seen on https://gitbetter.substack.com/p/automate-repetitive-tasks-with-custom
 
