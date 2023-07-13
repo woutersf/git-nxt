@@ -23,5 +23,9 @@ As seen on https://gitbetter.substack.com/p/automate-repetitive-tasks-with-custo
 ## TODO
 * improve by testing that we are in actual git folder
 * improve semver sorting with https://github.com/z4kn4fein/php-semver 
-* add suggestions for alpha releases
+* add suggestions for alpha releases and other types
 * Add command for creating the tag
+
+## Done
+* Test for no tags (suggest 1.0.0)
+* When in repo with numeric tags, it suggests the next major, minor or patch.
