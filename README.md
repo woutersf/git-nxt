@@ -25,6 +25,7 @@ As seen on https://gitbetter.substack.com/p/automate-repetitive-tasks-with-custo
 * improve semver sorting with https://github.com/z4kn4fein/php-semver 
 * add suggestions for alpha releases and other types
 * Add command for creating the tag
+* Build binary in GH actions and allow single download of that
 
 ## Done
 * Test for no tags (suggest 1.0.0)
