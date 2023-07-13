@@ -20,7 +20,7 @@ As seen on https://gitbetter.substack.com/p/automate-repetitive-tasks-with-custo
 * use the new command (in a git repo)
 `git nxt`
 
-## TODO
+## Todo
 * improve by testing that we are in actual git folder
 * improve semver sorting with https://github.com/z4kn4fein/php-semver 
 * add suggestions for alpha releases and other types
@@ -29,3 +29,8 @@ As seen on https://gitbetter.substack.com/p/automate-repetitive-tasks-with-custo
 ## Done
 * Test for no tags (suggest 1.0.0)
 * When in repo with numeric tags, it suggests the next major, minor or patch.
+
+## Bonus
+If you want something faster tghan typing out git nxt, you can always use this alias:
+`alias gn=git nxt` 
+It's in all your terminals if you also add it to ~/.zshrc
