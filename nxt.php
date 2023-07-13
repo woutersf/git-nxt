@@ -1,6 +1,62 @@
 <?php
 //TODO require git.
 
+$semver_pattern = '/(\w*\/)?(v)?(\d+)\.(\d+)\.(\d+)(\-\w*\.\d)?/';
+
+function sort_versions($a, $b)
+{
+	$semver_pattern = '/(\w*\/)?(v)?(\d+)\.(\d+)\.(\d+)(\-\w*\.\d)?/';
+    if ($a == $b) {
+        return 0;
+    }
+    // echo $a;
+    // echo PHP_EOL;
+    // echo $b;
+    // echo PHP_EOL;
+    // echo '-----' . PHP_EOL;
+
+
+	preg_match($semver_pattern, $a, $matches);
+	$prefix = '';
+	if (isset($matches[1])) {
+		$prefix = $matches[1];	
+	}
+	if (isset($matches[2])) {
+		$textualprefix = $matches[2];
+	}
+	$major = (int) $matches[3];
+	$minor = (int) $matches[4];
+	$patch = (int) $matches[5];
+
+
+	preg_match($semver_pattern, $b, $bmatches);
+	print_r($bmatches);
+	$bprefix = '';
+	if (isset($bmatches[1])) {
+		$bprefix = $bmatches[1];	
+	}
+	if (isset($bmatches[2])) {
+		$textualprefix = $bmatches[2];
+	}
+	$bmajor = (int) $bmatches[3];
+	$bminor = (int) $bmatches[4];
+	$bpatch = (int) $bmatches[5];
+
+	if ($major < $bmajor) {return  -1; };
+	if ($major > $bmajor) {return  1 ;};
+
+	if ($minor < $bminor) {return  -1 ;};
+	if ($minor > $bminor) {return  1 ;};
+
+	echo "comparing patches:" . PHP_EOL;
+	echo $bpatch . PHP_EOL;
+	echo $patch . PHP_EOL;
+	if ($patch < $bpatch) {return  -1 ;};
+	if ($patch > $bpatch) {return  1 ;};
+	
+    return ($a < $b) ? -1 : 1;
+}
+
 $output = shell_exec('git tag  -l --sort=v:refname');
 if($output == null) {
 	echo "[nxt] No tags found. Maybe go for 1.0.0?";
@@ -11,7 +67,9 @@ $tags = explode(PHP_EOL, $output);
 
 
 // TODO: improve sort
-#sort($tags);
+usort($tags, 'sort_versions');
+echo "sorted:";
+print_r($tags);
 $tags = array_filter($tags);
 $last = end($tags);
 // possible improvement: https://github.com/z4kn4fein/php-semver 
@@ -31,8 +89,7 @@ foreach ($tags as $tag) {
 // https://regex101.com/r/Ly7O1x/3/
 // from https://semver.org/
 
-$pattern = '/(\w*\/)?(v)?(\d)*\.(\d)*\.(\d)*(\-\w*\.\d)?/';
-preg_match($pattern, $last, $matches);
+preg_match($semver_pattern, $last, $matches);
 $prefix = '';
 if (isset($matches[1])) {
 	$prefix = $matches[1];	
