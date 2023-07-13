@@ -9,12 +9,6 @@ function sort_versions($a, $b)
     if ($a == $b) {
         return 0;
     }
-    // echo $a;
-    // echo PHP_EOL;
-    // echo $b;
-    // echo PHP_EOL;
-    // echo '-----' . PHP_EOL;
-
 
 	preg_match($semver_pattern, $a, $matches);
 	$prefix = '';
@@ -30,7 +24,7 @@ function sort_versions($a, $b)
 
 
 	preg_match($semver_pattern, $b, $bmatches);
-	print_r($bmatches);
+
 	$bprefix = '';
 	if (isset($bmatches[1])) {
 		$bprefix = $bmatches[1];	
@@ -48,9 +42,6 @@ function sort_versions($a, $b)
 	if ($minor < $bminor) {return  -1 ;};
 	if ($minor > $bminor) {return  1 ;};
 
-	echo "comparing patches:" . PHP_EOL;
-	echo $bpatch . PHP_EOL;
-	echo $patch . PHP_EOL;
 	if ($patch < $bpatch) {return  -1 ;};
 	if ($patch > $bpatch) {return  1 ;};
 	
